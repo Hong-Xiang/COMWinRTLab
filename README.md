@@ -28,3 +28,6 @@ Topics:
 - Threading model changes in COM -> UWP WinRT -> WinAppSDK WinRT
 - Lowering of WinRT functionalities to COM interfaces:
     - class like functionalities, properties, events, async, error handling, etc
+- Practical debug tools:
+    - from course, there are depends for checking dll dependencies, il diasm for checking winmd, etc
+    - from chat channel, there are gflags, loader snaps, Procmon, etc
