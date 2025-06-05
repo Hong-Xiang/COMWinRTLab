@@ -2,3 +2,9 @@
 
 obj/
 bin/
+
+*.obj
+*.lib
+*.dll
+*.exp
+
