@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<OutputType>Exe</OutputType>
+		<OutputType>Library</OutputType>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<TargetFramework>net9.0-windows10.0.22000.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<EnableNativeDebugging>true</EnableNativeDebugging>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<!--<PublishAot>True</PublishAot>-->
+
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,7 +17,6 @@
 			<OutputItemType>Content</OutputItemType>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</ProjectReference>
-		<ProjectReference Include="..\CSharpConsumer\CSharpConsumer.csproj" />
 	</ItemGroup>
 
 </Project>

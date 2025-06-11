@@ -51,3 +51,12 @@ COM was even claimed to be "a better OO model than C++",
 thus it was designed in a way that relative easy to write component in C++ (without addtional runtime support for its core functionalities), we can directly write C++ to generate code that is compatible with COM. .NET used to provide built-in support for COM in runtime.
 
 On the time of WinRT, idea of COM involved to be a stable ABI to be used in MULTIPLE languages, not only C++ and C#.
+
+## Notes
+
+### Dump object layout using compiler:
+```
+cl /Fo /c /d1reportAllClassLayout .\some-target.cpp
+```
+arguments `/c` and `/Fo` are not required, `/d1reportAllClassLayout` is actually the key argument,
+adding `/c` and `/Fo` is to make the command line compile only dump the layout, no link, and no output actual obj file.

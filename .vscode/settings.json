@@ -1,0 +1,29 @@
+{
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Developer PowerShell for VS 2022": {
+            "hidden": false,
+            "source": "PowerShell",
+            "args": [
+                "-NoExit",
+                "-Command",
+                "&{Import-Module \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"; Enter-VsDevShell 20344e2b -SkipAutomaticLocation -DevCmdArguments \"-arch=x64 -host_arch=x64\"}"
+            ]
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    }
+}

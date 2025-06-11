@@ -1,0 +1,7 @@
+LIBRARY CppComponent
+EXPORTS
+    ; Add your exported functions here
+    ; For example:
+    ; MyExportedFunction    @1
+    AddC
+    CreateCalculator
