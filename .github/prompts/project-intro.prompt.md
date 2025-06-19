@@ -1,5 +1,7 @@
 ---
 mode: 'agent'
+description: 'General pourpose project intro prompt for working with this project with copilot'
+tools: ['codebase', 'fetch', 'githubRepo']
 ---
 This project is a learning puprose project to learn how the COM/WinRT works,
 by implementing a mini-COM/mini-WinRT component/comsumer by hand.
@@ -19,3 +21,5 @@ please consider using [memory](./memory.prompt.md) to split the task into smalle
 
 When performing changes, please try to come up with proper way to validate those changes first,
 one common way is to write a test case to ensure the changes are correct.
+
+There is a roadmap/plan for this project, please check [README](./README.md).

@@ -9,8 +9,7 @@ const GUID IUnknownGuid = __uuidof(IUnknown); // "00000000-0000-0000-C000-000000
 
 static const GUID IUknownIID{ 0x0, 0x0, 0x0, { 0xc0, 0x00, 0x00, 0x00, 0x0, 0x0, 0x0, 0xa46 } };
 
-class IUknown {
-public:
+struct IUknown {
 	virtual HRESULT __stdcall QueryInterface(const GUID& iid, void** ppv) noexcept = 0;
 	virtual ULONG __stdcall AddRef() noexcept = 0;
 	virtual ULONG __stdcall Release() noexcept = 0;
@@ -20,8 +19,7 @@ public:
 static const GUID CalculatorIID =
 { 0xd65a935, 0x2857, 0x4487, { 0x9c, 0xcd, 0x63, 0x3d, 0x40, 0x56, 0x3c, 0x4e } };
 
-class ICalculator : IUnknown {
-public:
+struct ICalculator : IUnknown {
 	virtual HRESULT __stdcall Hello() noexcept = 0;
 	virtual INT32 __stdcall Add(INT32, INT32) noexcept = 0;
 };
@@ -31,8 +29,7 @@ public:
 static const GUID Calculator2IID =
 { 0x497a7bfe, 0xbb9c, 0x4ddf, { 0x91, 0x4e, 0x5d, 0xe5, 0x60, 0x23, 0x25, 0xff } };
 
-class ICalculator2 : IUnknown {
-public:
+struct ICalculator2 : IUnknown {
 	virtual HRESULT __stdcall Mul(INT32, INT32, INT32*) noexcept = 0;
 };
 
@@ -71,7 +68,7 @@ public:
 			AddRef();
 			return S_OK;
 		}
-		return E_NOTIMPL;
+		return E_NOINTERFACE;
 	};
 	virtual ULONG __stdcall AddRef() noexcept {
 		auto result = InterlockedIncrement(&m_count);
