@@ -91,6 +91,17 @@ Learn COM/WinRT from scratch by implementing them step-by-step with minimal depe
     - Registry entries created correctly
     - `CoCreateInstance` works with CLSID lookup
 
+- [ ] **Reg-Free COM (Side-by-Side Manifests)**
+  - **Files to create**: `CppComponent.manifest`, `LabTestConsoleSharp.exe.manifest`, `CppComponent.dll.manifest`
+  - **Changes needed**: Create application and component manifests for reg-free activation
+  - **Validation**: COM component works without registry registration
+  - **Acceptance criteria**:
+    - Component works via manifests without `regsvr32`
+    - `CoCreateInstance` succeeds using manifest-based activation
+    - Side-by-side deployment enables isolated component versions
+    - Manifest-based activation works in both debug and release builds
+  - **Benefits**: Enables xcopy deployment, version isolation, no admin rights needed
+
 - [ ] **Apartment Threading Model**
   - **Files to modify**: `Calculator` class, add thread safety
   - **Changes needed**: Add apartment awareness, thread marshaling
@@ -121,14 +132,7 @@ Learn COM/WinRT from scratch by implementing them step-by-step with minimal depe
     - New `ICalculator3` adds functionality
     - QueryInterface properly handles all versions
 
-- [ ] **Memory Leak Detection**
-  - **Files to create**: Memory testing utilities
-  - **Changes needed**: Add leak detection in tests
-  - **Validation**: No memory leaks under stress testing
-  - **Acceptance criteria**:
-    - All AddRef/Release pairs balanced
-    - Stress tests pass without leaks
-    - Proper cleanup on DLL unload
+
 
 ### Phase 6: WinRT Foundation 📋 (Planned)
 **Goal**: Build WinRT layer on top of COM
@@ -184,6 +188,16 @@ Learn COM/WinRT from scratch by implementing them step-by-step with minimal depe
     - C# can await results
     - Cancellation works
 
+
+
+- [ ] **Memory Leak Detection**
+  - **Files to create**: Memory testing utilities
+  - **Changes needed**: Add leak detection in tests
+  - **Validation**: No memory leaks under stress testing
+  - **Acceptance criteria**:
+    - All AddRef/Release pairs balanced
+    - Stress tests pass without leaks
+    - Proper cleanup on DLL unload
 ## Testing Strategy
 
 Each phase includes:
