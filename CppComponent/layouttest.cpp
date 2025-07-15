@@ -1,53 +1,64 @@
 #include <cstdio> // for printf
 
-struct IDraw {
-    virtual void Draw() = 0;
+struct IDraw
+{
+    virtual void __stdcall Draw() = 0;
 };
 
-struct IShape : IDraw {
-    virtual double Area() = 0;
-    virtual double Perimeter() = 0;
+struct IShape : IDraw
+{
+    virtual double __stdcall Area() = 0;
+    virtual double __stdcall Perimeter() = 0;
 };
 
-struct IHasCorner {
-    virtual int Corners() = 0;
+struct IHasCorner
+{
+    virtual int __stdcall Corners() = 0;
 };
 
-
-struct Circle : IShape {
+struct Circle : IShape
+{
     double m_radius;
     Circle(double radius) : m_radius(radius) {}
-    double Area() override {
+    double __stdcall Area() override
+    {
         return 3.14 * m_radius * m_radius;
     }
-    double Perimeter() override {
+    double __stdcall Perimeter() override
+    {
         return 2 * 3.14 * m_radius;
     }
-    void Draw() override {
+    void __stdcall Draw() override
+    {
         printf("Circle\n");
     }
 };
 
-
-struct Square : IShape, IHasCorner {
+struct Square : IShape, IHasCorner
+{
     double m_side;
     Square(double side) : m_side(side) {}
-    double Area() override {
+    double __stdcall Area() override
+    {
         return m_side * m_side;
     }
-    double Perimeter() override {
+    double __stdcall Perimeter() override
+    {
         return 4 * m_side;
     }
-    void Draw() override {
+    void __stdcall Draw() override
+    {
         printf("Square\n");
     }
-    int Corners() override {
+    int __stdcall Corners() override
+    {
         return 4;
     }
 };
 
-template<typename T>
-void dump_layout() {
+template <typename T>
+void dump_layout()
+{
     volatile size_t s = sizeof(T);
 }
 
