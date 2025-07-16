@@ -17,6 +17,7 @@
 			<OutputItemType>Content</OutputItemType>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</ProjectReference>
+		<ProjectReference Include="..\CSharpClient\CSharpClient.csproj" />
 		<ProjectReference Include="..\CSharpConsumer\CSharpConsumer.csproj" />
 	</ItemGroup>
 

@@ -87,12 +87,15 @@ internal partial class Program
 
     static void Main(string[] args)
     {
+        CSharpClient.CppServerNativeMethods.HelloFromClientExport();
+        new CSharpClient.MinimumCOMUsage().Run();
+
         //Console.WriteLine(AddC(40, 2));
         //SimpleRelease();
         //UseComWrapper();
-        UseManualVTable();
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-        Console.ReadLine();
+        //UseManualVTable();
+        //GC.Collect();
+        //GC.WaitForPendingFinalizers();
+        //Console.ReadLine();
     }
 }

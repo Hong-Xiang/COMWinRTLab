@@ -14,4 +14,8 @@ static partial class NativeMethods
 
     [LibraryImport("CppComponent.dll")]
     public static partial nint CreateCalculator();
+
+    static void Foo()
+    {
+    }
 }
