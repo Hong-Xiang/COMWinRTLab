@@ -108,5 +108,5 @@ Calculator* CreateCalculator() {
 
 struct IShape {
 	virtual HRESULT __stdcall Area(double* result) noexcept = 0;
-	virtual HRESULT __stdcall Parimeter(double* result) noexcept = 0;
+	virtual HRESULT __stdcall Perimeter(double* result) noexcept = 0;
 };
