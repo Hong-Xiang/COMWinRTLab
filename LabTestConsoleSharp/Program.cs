@@ -87,8 +87,9 @@ internal partial class Program
 
     static void Main(string[] args)
     {
-        CSharpClient.CppServerNativeMethods.HelloFromClientExport();
-        new CSharpClient.MinimumCOMUsage().Run();
+        //CSharpClient.CppServerNativeMethods.HelloFromClientExport();
+        //new CSharpClient.MinimumCOMUsage().Run();
+        new CSharpClient.CppCOMUsage().Run();
 
         //Console.WriteLine(AddC(40, 2));
         //SimpleRelease();

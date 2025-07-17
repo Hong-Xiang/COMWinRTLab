@@ -2,3 +2,4 @@ LIBRARY
 EXPORTS
 	HelloFromClientExport
 	CreateMinimumCOMObject
+	CreateCppCOMObject

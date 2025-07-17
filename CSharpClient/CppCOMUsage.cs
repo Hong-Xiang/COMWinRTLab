@@ -1,15 +1,18 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpClient;
 
-public partial class MinimumCOMUsage
-{
 
-  
+public partial class CppCOMUsage
+{
     void SimpleIUnknownAPICallTest()
     {
-        var x = CppServerNativeMethods.CreateMinimumCOMObject();
+        var x = CppServerNativeMethods.CreateCppCOMObject();
         {
             Marshal.AddRef(x);
             Marshal.Release(x);
@@ -19,9 +22,11 @@ public partial class MinimumCOMUsage
 
     void ComWrapperUsageTest()
     {
-        var x = CppServerNativeMethods.CreateMinimumCOMObject();
+        var x = CppServerNativeMethods.CreateCppCOMObject();
         var o = (IHello)Marshal.GetObjectForIUnknown(x);
         o.Hello(42);
+        var a = (IAdderInterface)o;
+        Console.WriteLine($"calling add(1, 2) = {a.Add(1, 2)}");
         Marshal.Release(x);
     }
 

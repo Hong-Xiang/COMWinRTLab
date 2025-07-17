@@ -9,4 +9,7 @@ public static partial class CppServerNativeMethods
 
     [LibraryImport("CppServer.dll")]
     public static partial nint CreateMinimumCOMObject();
+
+    [LibraryImport("CppServer.dll")]
+    public static partial nint CreateCppCOMObject();
 }
