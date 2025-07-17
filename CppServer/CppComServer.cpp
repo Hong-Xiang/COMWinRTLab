@@ -5,17 +5,18 @@
 namespace CppCOMServer {
 	struct
 		__declspec(uuid("2E55DE61-D7ED-44BE-9B62-F340AF70721D"))
+		// can not be IHello : virtual IUnknown here
 		IHello : IUnknown {
 		virtual HRESULT __stdcall Hello(int data) noexcept = 0;
 	};
 
-	struct 
+	struct
 		__declspec(uuid("EA71AB58-8226-4FCB-A156-DC53E1EE91A9"))
 		IAdder : IUnknown {
 		virtual HRESULT __stdcall Add(int a, int b, int* r) noexcept = 0;
 	};
 
-	struct MyHelloObject : IHello, IAdder {
+	struct MyHelloObject : virtual IHello, virtual IAdder {
 		unsigned long m_count{ 1 };
 
 		// IUnknown methods
@@ -24,6 +25,15 @@ namespace CppCOMServer {
 			if (ppv == nullptr) {
 				return E_INVALIDARG;
 			}
+
+			// can not add below code, causing base class ambiguous
+			//if (riid == __uuidof(IUnknown)) {
+			//	*ppv = static_cast<IUnknown*>(this); 
+			//	std::cout << "Query for IUnknown: " << *ppv << std::endl;
+			//	AddRef();
+			//	return S_OK;
+			//}
+
 
 			if (riid == __uuidof(IUnknown) || riid == __uuidof(CppCOMServer::IHello)) {
 				*ppv = static_cast<IHello*>(this);
@@ -65,7 +75,7 @@ namespace CppCOMServer {
 			return S_OK;
 		}
 
-		virtual HRESULT __stdcall Add(int a, int b, int* r) {
+		virtual HRESULT __stdcall Add(int a, int b, int* r) noexcept override {
 			*r = a + b;
 			return S_OK;
 		}
