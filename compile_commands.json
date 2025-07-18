@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "d:\\COMWinRTLab",
+    "command": "clang++.exe -fms-extensions -std=c++17 -I. -IServerCpp ServerCpp\\server.cpp -o build\\output.exe",
+    "file": "ServerCpp\\server.cpp"
+  }
+]

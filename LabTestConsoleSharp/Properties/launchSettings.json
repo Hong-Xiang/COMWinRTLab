@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LabTestConsoleSharp": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
