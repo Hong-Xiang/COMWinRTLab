@@ -47,3 +47,9 @@ This diagram shows:
 - **Function Implementations**: The actual code that gets executed when methods are called
 
 
+Historically COM's ABI is designed based on the assumption that among all major cpp compilers,
+1. All types in C-style type system could be represented uniformly, thus struct layout is consistent
+2. All functions arguments could be passed uniformly, i.e. support a specific calling convention
+3. (Core design of COM) All cpp compilers implement the virtual function call mechanism equivalently,
+more specifically, only requires for classes that have no data members
+and with at most one base class that also has no data members.
