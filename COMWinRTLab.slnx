@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ClientCSharp/ClientCSharp.csproj" />
+  <Project Path="CppComponent/CppComponent.vcxproj" Id="659f9f3b-c3c4-4baa-b054-71a5d13978df" />
+  <Project Path="CppServer/CppServer.vcxproj" Id="4857baad-1d37-4199-afb1-7c5d7f5706d6" />
+  <Project Path="CSharpClient/CSharpClient.csproj">
+    <Platform Solution="Debug|x64" Project="x64" />
+  </Project>
+  <Project Path="CSharpConsumer/CSharpConsumer.csproj" />
+  <Project Path="CSharpConsumerTest/CSharpConsumerTest.csproj" />
+  <Project Path="LabTestConsoleSharp/LabTestConsoleSharp.csproj" />
+  <Project Path="TestConsoleApp/TestConsoleApp.csproj" />
+</Solution>

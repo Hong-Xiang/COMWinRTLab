@@ -1,4 +1,5 @@
 #include "com.h"
+#include "abi.h"
 
 static GUID IUnknownGUID{0x00000000,
                          0x0000,
@@ -8,5 +9,5 @@ static GUID IUnknownGUID{0x00000000,
 GUID com::GetIUnknownIID() { return IUnknownGUID; }
 
 extern "C" {
-__declspec(dllexport) GUID GetIUnknownIID() { return IUnknownGUID; }
+EXPORT_API GUID GetIUnknownIID() { return IUnknownGUID; }
 }

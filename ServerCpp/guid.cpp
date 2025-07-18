@@ -1,4 +1,5 @@
 #include "guid.h"
+#include "abi.h"
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -29,7 +30,7 @@ std::string guid_to_string(REFGUID guid) {
 }
 
 extern "C" {
-__declspec(dllexport) void PrintGUID(REFGUID guid) {
+EXPORT_API void PrintGUID(REFGUID guid) {
   std::string str = guid_to_string(guid);
   std::cout << str << std::endl;
 }
