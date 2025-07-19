@@ -1,5 +1,4 @@
-﻿using ClientCSharp;
-using System.CommandLine;
+﻿using System.CommandLine;
 
 namespace TestConsoleApp;
 

@@ -1,5 +1,4 @@
-﻿using ClientCSharp;
-using System.CommandLine;
+﻿using System.CommandLine;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
@@ -49,6 +48,12 @@ internal class HelloObject
                 case (ComProducer.C, ComConsumer.ComWrapper):
                     CComWrapper();
                     break;
+                case (ComProducer.Cpp, ComConsumer.Marshal):
+                    CppMarshal();
+                    break;
+                case (ComProducer.Cpp, ComConsumer.ComWrapper):
+                    CppComWrapper();
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -57,10 +62,8 @@ internal class HelloObject
         Command = cmd;
     }
 
-    public void CMarshal()
+    void MarshalConsume(nint ptr)
     {
-        Console.WriteLine("Calling Factory");
-        var ptr = ServerCppNative.ComCCreateHello();
         Console.WriteLine("Getting dotnet wrapper");
         var unknown = Marshal.GetObjectForIUnknown(ptr);
         Console.WriteLine("Release original ptr");
@@ -70,10 +73,8 @@ internal class HelloObject
         hello.SayHello();
     }
 
-    public void CComWrapper()
+    void ComWrapperConsume(nint ptr)
     {
-        Console.WriteLine("Calling Factory");
-        var ptr = ServerCppNative.ComCCreateHello();
         Console.WriteLine("Getting dotnet wrapper");
         var cw = new StrategyBasedComWrappers();
         var unknown = cw.GetOrCreateObjectForComInstance(ptr, CreateObjectFlags.None);
@@ -83,4 +84,34 @@ internal class HelloObject
         var hello = (IHello)unknown;
         hello.SayHello();
     }
+
+
+
+    public void CMarshal()
+    {
+        Console.WriteLine("Calling Factory");
+        var ptr = ServerCppNative.ComCCreateHello();
+        MarshalConsume(ptr);
+    }
+
+    public void CppMarshal()
+    {
+        Console.WriteLine("Calling Factory");
+        var ptr = ServerCppNative.ComCppCreateHello();
+        MarshalConsume(ptr);
+    }
+
+    public void CComWrapper()
+    {
+        Console.WriteLine("Calling Factory");
+        var ptr = ServerCppNative.ComCppCreateHello();
+        ComWrapperConsume(ptr);
+    }
+    public void CppComWrapper()
+    {
+        Console.WriteLine("Calling Factory");
+        var ptr = ServerCppNative.ComCppCreateHello();
+        ComWrapperConsume(ptr);
+    }
+
 }

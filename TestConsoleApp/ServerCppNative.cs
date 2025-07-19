@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ClientCSharp;
+namespace TestConsoleApp;
+
 public static partial class ServerCppNative
 {
     [LibraryImport("ServerCpp.dll")]
