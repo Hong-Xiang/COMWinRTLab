@@ -113,5 +113,4 @@ internal class HelloObject
         var ptr = ServerCppNative.ComCppCreateHello();
         ComWrapperConsume(ptr);
     }
-
 }

@@ -18,5 +18,4 @@ public static partial class ServerCppNative
 
     [LibraryImport("ServerCpp.dll")]
     public static partial nint ComCppCreateHello();
-
 }
