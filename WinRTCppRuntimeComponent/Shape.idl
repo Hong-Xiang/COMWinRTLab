@@ -1,0 +1,14 @@
+namespace WinRTCppRuntimeComponent {
+    interface IShape {
+        void Show();
+        Single Area();
+    }
+    [default_interface]
+    runtimeclass Circle : IShape {
+        Circle(Single size);
+    };
+    [default_interface]
+    runtimeclass Square : IShape {
+        Square(Single size);
+    };
+}

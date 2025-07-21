@@ -1,5 +1,6 @@
 namespace MyWinRT {
     runtimeclass Square {
+        Square();
         Square(Single size);
         void Show();
     };

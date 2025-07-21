@@ -1,4 +1,6 @@
 #include <iostream>
+#include "abi.h"
+#include "com.h"
 #include "guid.h"
 
 struct
@@ -12,3 +14,4 @@ S
 
 //     return 0;
 // }
+

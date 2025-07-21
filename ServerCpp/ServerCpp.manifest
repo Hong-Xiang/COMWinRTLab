@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+<assemblyIdentity
+  type="win32"
+  name="ServerCpp"
+  version="1.0.0.0" />
+
+<file name = "ServerCpp.dll">
+  <comClass
+    clsid="{3c6eb492-ffdb-4213-a890-6ef69ad507c2}"
+    threadingModel="Both" />
+  <comClass
+    clsid="{56f52a44-2e07-4fce-be7a-6473e4ba0be8}"
+    threadingModel="Both" />
+</file>
+</assembly>

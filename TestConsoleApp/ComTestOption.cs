@@ -9,7 +9,8 @@ namespace TestConsoleApp;
 enum ComProducer
 {
     Cpp,
-    C
+    C,
+    CoCreateInstance
 }
 
 enum ComConsumer
