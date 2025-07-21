@@ -196,10 +196,15 @@ struct IHelloFactory : com::IClassFactory {
 };
 } // namespace comcpp
 
-com::hresult STDCALL DllGetClassObject(REFGUID rclsid, REFGUID riid,
+EXTERN_C EXPORT_API com::hresult STDCALL DllGetClassObject(REFGUID rclsid, REFGUID riid,
                                        void **ppv) {
   static comcpp::ISimpleFactory simpleFactory{};
   static comcpp::IHelloFactory helloFactory{};
+
+  std::cout << "DllGetClassObject called with rclsid "
+            << guid_to_string(rclsid) 
+            << " and riid " << guid_to_string(riid)
+            << std::endl;
 
   if (rclsid == __uuidof(comcpp::Object))
     return simpleFactory.QueryInterface(riid, ppv);

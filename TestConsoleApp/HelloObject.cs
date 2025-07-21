@@ -14,6 +14,17 @@ partial interface IHello
 }
 
 [ComImport]
+[Guid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")]
+[CoClass(typeof(Hello))]
+internal interface Hello
+{
+}
+
+[ComImport]
+[Guid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")]
+sealed class HelloClass { }
+
+[ComImport]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 [Guid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")]
 interface IHelloJIT
@@ -53,6 +64,14 @@ internal class HelloObject
                     break;
                 case (ComProducer.Cpp, ComConsumer.ComWrapper):
                     CppComWrapper();
+                    break;
+                case (ComProducer.CoCreateInstance, ComConsumer.Marshal):
+                    CoCreateInstanceMarshal();
+                    break;
+                case (ComProducer.CoCreateInstance, ComConsumer.ComWrapper):
+                    CoCreateInstanceComWrapper();
+                    break;
+                case (ComProducer.Class, _):
                     break;
                 default:
                     throw new NotImplementedException();
@@ -100,6 +119,40 @@ internal class HelloObject
         var ptr = ServerCppNative.ComCppCreateHello();
         MarshalConsume(ptr);
     }
+
+    public nint CoCreateInstance()
+    {
+        Console.WriteLine("Calling CoCreateInstance");
+        var hr = ServerCppNative.CoCreateInstance(typeof(Hello).GUID, IntPtr.Zero, 1, typeof(IHello).GUID, out var ptr);
+        if (hr != 0)
+        {
+            throw new Exception($"CoCreateInstance failed with hr: {hr}");
+        }
+        return ptr;
+    }
+
+    public void ClassProducer()
+    {
+        Console.WriteLine("Calling Com Import Class");
+        //var ptr = ServerCppNative.ComCCreateHello();
+        //ComWrapperConsume(ptr);
+    }
+
+
+    public void CoCreateInstanceComWrapper()
+    {
+        Console.WriteLine("Calling CoCreateInstance");
+        var ptr = CoCreateInstance();
+        ComWrapperConsume(ptr);
+    }
+
+    public void CoCreateInstanceMarshal()
+    {
+        Console.WriteLine("Calling CoCreateInstance");
+        var ptr = CoCreateInstance();
+        MarshalConsume(ptr);
+    }
+
 
     public void CComWrapper()
     {

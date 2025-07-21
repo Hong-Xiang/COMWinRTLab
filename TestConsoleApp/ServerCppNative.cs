@@ -21,10 +21,10 @@ public static partial class ServerCppNative
 
     [LibraryImport("ole32.dll")]
     public static partial int CoCreateInstance(
-        ref Guid rclsid,
+        in Guid rclsid,
         nint pUnkOuter,
         int dwClsContext,
-        ref Guid riid,
+        in Guid riid,
         out nint ppv);
 
 }

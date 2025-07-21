@@ -10,7 +10,8 @@ enum ComProducer
 {
     Cpp,
     C,
-    CoCreateInstance
+    CoCreateInstance,
+    Class
 }
 
 enum ComConsumer
