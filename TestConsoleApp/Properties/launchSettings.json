@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "hello-object CoCreateInstance Marshal"
+    }
+  }
+}

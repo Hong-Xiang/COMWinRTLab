@@ -14,15 +14,8 @@ partial interface IHello
 }
 
 [ComImport]
-[Guid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")]
-[CoClass(typeof(Hello))]
-internal interface Hello
-{
-}
-
-[ComImport]
 [Guid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")]
-sealed class HelloClass { }
+sealed class Hello { }
 
 [ComImport]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -70,8 +63,6 @@ internal class HelloObject
                     break;
                 case (ComProducer.CoCreateInstance, ComConsumer.ComWrapper):
                     CoCreateInstanceComWrapper();
-                    break;
-                case (ComProducer.Class, _):
                     break;
                 default:
                     throw new NotImplementedException();
@@ -123,10 +114,10 @@ internal class HelloObject
     public nint CoCreateInstance()
     {
         Console.WriteLine("Calling CoCreateInstance");
-        var hr = ServerCppNative.CoCreateInstance(typeof(Hello).GUID, IntPtr.Zero, 1, typeof(IHello).GUID, out var ptr);
-        if (hr != 0)
+        var hr = ServerCppNative.CoCreateInstance(typeof(Hello).GUID, IntPtr.Zero, 1 | 2, typeof(IHello).GUID, out var ptr);
+        if (hr < 0)
         {
-            throw new Exception($"CoCreateInstance failed with hr: {hr}");
+            Marshal.ThrowExceptionForHR(hr);
         }
         return ptr;
     }
@@ -134,21 +125,18 @@ internal class HelloObject
     public void ClassProducer()
     {
         Console.WriteLine("Calling Com Import Class");
-        //var ptr = ServerCppNative.ComCCreateHello();
-        //ComWrapperConsume(ptr);
+        //var hello = (Hello)new HelloClass();
     }
 
 
     public void CoCreateInstanceComWrapper()
     {
-        Console.WriteLine("Calling CoCreateInstance");
         var ptr = CoCreateInstance();
         ComWrapperConsume(ptr);
     }
 
     public void CoCreateInstanceMarshal()
     {
-        Console.WriteLine("Calling CoCreateInstance");
         var ptr = CoCreateInstance();
         MarshalConsume(ptr);
     }

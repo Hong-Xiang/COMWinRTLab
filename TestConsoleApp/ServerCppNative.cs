@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace TestConsoleApp;
 
@@ -26,5 +27,9 @@ public static partial class ServerCppNative
         int dwClsContext,
         in Guid riid,
         out nint ppv);
+    [LibraryImport("ole32.dll")]
+    public static partial int CoInitializeEx(nint pvReserved, UInt32 dwCoInit);
+    [LibraryImport("ole32.dll")]
+    public static partial uint CoUninitialize();
 
 }
