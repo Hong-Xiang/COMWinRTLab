@@ -15,5 +15,6 @@
   <Project Path="CSharpConsumerTest/CSharpConsumerTest.csproj" />
   <Project Path="LabTestConsoleSharp/LabTestConsoleSharp.csproj" />
   <Project Path="TestConsoleApp/TestConsoleApp.csproj" />
+  <Project Path="WinRTConsumeTest/WinRTConsumeTest.csproj" Id="74a46092-84e8-43e6-be3c-0b53ee2f2986" />
   <Project Path="WinRTCppRuntimeComponent/WinRTCppRuntimeComponent.vcxproj" Id="e327c620-d457-43fb-8a86-243e7d34915d" />
 </Solution>

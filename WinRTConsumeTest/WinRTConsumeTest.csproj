@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<CsWinRTIncludes>WinRTCppRuntimeComponent</CsWinRTIncludes>
+		<ApplicationManifest>WinRTConsumeTest.exe.manifest</ApplicationManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\WinRTCppRuntimeComponent\WinRTCppRuntimeComponent.vcxproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\x64\Debug\WinRTCppRuntimeComponent\WinRTCppRuntimeComponent.winmd">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+	<assemblyIdentity version="1.0.0.0" name="WinRTConsumeTest"/>
+	
+	<file name="WinRTCppRuntimeComponent.dll">
+		<activatableClass
+			name="WinRTCppRuntimeComponent.Circle"
+			threadingModel="both"
+			xmlns="urn:schemas-microsoft-com:winrt.v1" />
+		<activatableClass
+			name="WinRTCppRuntimeComponent.Square"
+			threadingModel="both"
+			xmlns="urn:schemas-microsoft-com:winrt.v1" />
+	</file>
+
+</assembly>
