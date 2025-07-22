@@ -13,9 +13,7 @@ partial interface IHello
     void SayHello();
 }
 
-[ComImport]
-[Guid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")]
-[CoClass(typeof(Hello))]
+[Guid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")]
 internal interface Hello
 {
 }

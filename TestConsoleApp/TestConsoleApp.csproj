@@ -13,7 +13,7 @@
 		<None Include="..\build\ServerCpp.dll" Link="ServerCpp.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Include="..\build\ServerCpp.manifest" Link="ServerCpp.X.manifest">
+		<None Include="..\build\ServerCpp.X.manifest" Link="ServerCpp.X.manifest">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 
