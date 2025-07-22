@@ -9,6 +9,7 @@ namespace winrt::WinRTCppRuntimeComponent::implementation
         Circle() = default;
 
         Circle(float size);
+        float Radius();
         void Show();
         float Area();
     };

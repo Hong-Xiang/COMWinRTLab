@@ -5,10 +5,12 @@ namespace WinRTCppRuntimeComponent {
     }
     [default_interface]
     runtimeclass Circle : IShape {
-        Circle(Single size);
+        Single Radius { get; };
+        Circle(Single radius);
     };
     [default_interface]
-    runtimeclass Square : IShape {
+    runtimeclass Square : IShape{
+        Single Size { get; };
         Square(Single size);
     };
 }

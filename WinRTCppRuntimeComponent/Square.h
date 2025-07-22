@@ -5,9 +5,11 @@ namespace winrt::WinRTCppRuntimeComponent::implementation
 {
     struct Square : SquareT<Square>
     {
+        float m_size;
         Square() = default;
 
         Square(float size);
+        float Size();
         void Show();
         float Area();
     };
