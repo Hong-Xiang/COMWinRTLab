@@ -10,14 +10,14 @@ enum ComProducer
 {
     Cpp,
     C,
-    CoCreateInstance,
-    Class
+    CoCreateInstance
 }
 
 enum ComConsumer
 {
     ComWrapper,
     Marshal,
-    CsWinRT
+    CsWinRT,
+    VTable
 }
 

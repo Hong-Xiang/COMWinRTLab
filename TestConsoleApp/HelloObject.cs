@@ -14,8 +14,11 @@ partial interface IHello
 }
 
 [ComImport]
-[Guid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")]
-sealed class Hello { }
+[Guid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")]
+[CoClass(typeof(Hello))]
+internal interface Hello
+{
+}
 
 [ComImport]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -25,6 +28,19 @@ interface IHelloJIT
     void SayHello();
 }
 
+unsafe struct IHelloVtbl
+{
+    public delegate* unmanaged[Stdcall]<void*, in Guid, out void*, int> QueryInterface;
+    public delegate* unmanaged[Stdcall]<void*, uint> AddRef;
+    public delegate* unmanaged[Stdcall]<void*, uint> Release;
+    public delegate* unmanaged[Stdcall]<void*, int> Hello;
+}
+
+unsafe struct ComPtr<T>
+    where T : unmanaged
+{
+    public T* VTablePtr;
+}
 
 internal class HelloObject
 {
@@ -63,6 +79,15 @@ internal class HelloObject
                     break;
                 case (ComProducer.CoCreateInstance, ComConsumer.ComWrapper):
                     CoCreateInstanceComWrapper();
+                    break;
+                case (ComProducer.C, ComConsumer.VTable):
+                    VTableUsage(ServerCppNative.ComCCreateHello());
+                    break;
+                case (ComProducer.Cpp, ComConsumer.VTable):
+                    VTableUsage(ServerCppNative.ComCppCreateHello());
+                    break;
+                case (ComProducer.CoCreateInstance, ComConsumer.VTable):
+                    VTableUsage(CoCreateInstance());
                     break;
                 default:
                     throw new NotImplementedException();
@@ -122,10 +147,15 @@ internal class HelloObject
         return ptr;
     }
 
-    public void ClassProducer()
+    public unsafe void VTableUsage(nint ptr)
     {
-        Console.WriteLine("Calling Com Import Class");
-        //var hello = (Hello)new HelloClass();
+        Console.WriteLine("Calling VTableUsage");
+        var self = (ComPtr<IHelloVtbl>*)ptr;
+
+        self->VTablePtr->Hello(self);
+
+        Console.WriteLine("Release ptr");
+        self->VTablePtr->Release(self);
     }
 
 

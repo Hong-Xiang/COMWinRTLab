@@ -9,7 +9,7 @@
       <!-- RegFree COM -->
       <assemblyIdentity
         type="win32"
-        name="ServerCpp.X"
+        name="ServerCpp"
         version="1.0.0.0"/>
     </dependentAssembly>
   </dependency>
