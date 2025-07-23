@@ -13,6 +13,11 @@ struct __declspec(uuid("b0bf416d-9e3a-4d46-9377-af3db3cb10e4")) IHello
   virtual com::hresult STDCALL SayHello() = 0;
 };
 
+struct __declspec(uuid("18518d31-cd27-40fb-8397-6176533078ef")) IFoo
+    : com::IUnknown {
+  virtual com::hresult STDCALL Foo() = 0;
+};
+
 struct __declspec(uuid("3c6eb492-ffdb-4213-a890-6ef69ad507c2")) Object
     : com::IUnknown {
   std::atomic<uint32_t> refCount{1};
@@ -50,7 +55,8 @@ struct __declspec(uuid("3c6eb492-ffdb-4213-a890-6ef69ad507c2")) Object
   }
 };
 
-struct __declspec(uuid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")) Hello : IHello {
+struct __declspec(uuid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")) Hello : IHello,
+                                                                        IFoo {
   std::atomic<uint32_t> refCount{1};
 
   virtual com::hresult STDCALL
@@ -63,22 +69,41 @@ struct __declspec(uuid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")) Hello : IHello {
     }
     *ppvObject = nullptr;
 
-    if (riid == __uuidof(com::IUnknown)) {
-      *ppvObject = static_cast<com::IUnknown *>(this);
-      std::cout << "Hello.QueryInterface(IUnknown) -> " << *ppvObject
+    // if (riid == __uuidof(com::IUnknown)) {
+    //   *ppvObject = static_cast<com::IUnknown *>(this);
+    //   std::cout << "Hello.QueryInterface(IUnknown) -> " << *ppvObject
+    //             << std::endl;
+    //   AddRef();
+    //   return com::hresult::OK;
+    // }
+    // if (riid == __uuidof(IHello)) {
+    //   *ppvObject = static_cast<IHello *>(this);
+    //   std::cout << "Hello.QueryInterface(IHello) -> " << *ppvObject
+    //             << std::endl;
+    //   AddRef();
+    //   return com::hresult::OK;
+    // }
+
+    if (riid == __uuidof(com::IUnknown) || riid == __uuidof(IHello)) {
+      *ppvObject = static_cast<IHello *>(this);
+      std::cout << "Hello.QueryInterface(IUnknown | IHello) -> " << *ppvObject
                 << std::endl;
       AddRef();
       return com::hresult::OK;
     }
-    if (riid == __uuidof(IHello)) {
-      *ppvObject = static_cast<IHello *>(this);
-      std::cout << "Hello.QueryInterface(IHello) -> " << *ppvObject
-                << std::endl;
+    if (riid == __uuidof(IFoo)) {
+      *ppvObject = static_cast<IFoo *>(this);
+      std::cout << "Hello.QueryInterface(IFoo) -> " << *ppvObject << std::endl;
       AddRef();
       return com::hresult::OK;
     }
 
     return com::hresult::NOINTERFACE;
+  }
+
+  virtual com::hresult STDCALL Foo() override {
+    std::cout << "Foo From COM By C++!" << std::endl;
+    return com::hresult::OK;
   }
 
   virtual uint32_t AddRef() noexcept override {

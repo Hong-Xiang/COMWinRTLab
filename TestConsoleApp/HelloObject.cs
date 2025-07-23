@@ -13,6 +13,14 @@ partial interface IHello
     void SayHello();
 }
 
+[GeneratedComInterface]
+[ComImport]
+[Guid("18518d31-cd27-40fb-8397-6176533078ef")]
+partial interface IFoo
+{
+    void SayFoo();
+}
+
 [Guid("56f52a44-2e07-4fce-be7a-6473e4ba0be8")]
 internal interface Hello
 {
@@ -104,6 +112,8 @@ internal class HelloObject
         Console.WriteLine("Casting");
         var hello = (IHelloJIT)unknown;
         hello.SayHello();
+        var foo = (IFoo)hello;
+        foo.SayFoo();
     }
 
     void ComWrapperConsume(nint ptr)
@@ -116,6 +126,8 @@ internal class HelloObject
         Console.WriteLine("Casting");
         var hello = (IHello)unknown;
         hello.SayHello();
+        var foo = (IFoo)hello;
+        foo.SayFoo();
     }
 
 
