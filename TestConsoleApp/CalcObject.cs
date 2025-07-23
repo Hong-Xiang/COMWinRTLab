@@ -6,7 +6,7 @@ using System.Runtime.InteropServices.Marshalling;
 namespace TestConsoleApp;
 
 [GeneratedComInterface]
-//[ComImport]
+[ComImport]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 [Guid("c30c6ecf-41d2-4628-982f-ecb48bddc4b8")]
 partial interface IAdder
@@ -17,7 +17,7 @@ partial interface IAdder
 }
 
 [GeneratedComInterface]
-//[ComImport]
+[ComImport]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 [Guid("2f4f04ed-1b83-4569-926b-b632d9970321")]
 partial interface ICalc

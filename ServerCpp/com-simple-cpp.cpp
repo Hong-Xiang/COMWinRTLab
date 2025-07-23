@@ -352,6 +352,7 @@ EXTERN_C EXPORT_API com::hresult STDCALL DllGetClassObject(REFGUID rclsid,
                                                            void **ppv) {
   static comcpp::ISimpleFactory simpleFactory{};
   static comcpp::IHelloFactory helloFactory{};
+  static comcppcalc::CalcFactory calcFactory{};
 
   std::cout << "DllGetClassObject called with rclsid " << guid_to_string(rclsid)
             << " and riid " << guid_to_string(riid) << std::endl;
@@ -361,7 +362,7 @@ EXTERN_C EXPORT_API com::hresult STDCALL DllGetClassObject(REFGUID rclsid,
   if (rclsid == __uuidof(comcpp::Hello))
     return helloFactory.QueryInterface(riid, ppv);
   if (rclsid == __uuidof(comcppcalc::Calc))
-    return comcppcalc::CalcFactory().QueryInterface(riid, ppv);
+    return calcFactory.QueryInterface(riid, ppv);
 
   return com::hresult::CLASS_E_CLASSNOTAVAILABLE;
 }
