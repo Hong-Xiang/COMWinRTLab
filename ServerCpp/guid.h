@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <string>
+#include <cstring>
 
 // Use Windows GUID definition if available, otherwise define our own
 #ifdef _WIN32
@@ -15,7 +16,7 @@ struct _GUID {
 typedef struct _GUID GUID;
 #define REFGUID const GUID &
 __inline int IsEqualGUID(REFGUID rguid1, REFGUID rguid2) {
-  return !memcmp(&rguid1, &rguid2, sizeof(GUID));
+  return !std::memcmp(&rguid1, &rguid2, sizeof(GUID));
 }
 __inline bool operator==(REFGUID guidOne, REFGUID guidOther) {
   return !!IsEqualGUID(guidOne, guidOther);
