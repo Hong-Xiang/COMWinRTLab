@@ -20,6 +20,9 @@ public static partial class ServerCppNative
     [LibraryImport("ServerCpp.dll")]
     public static partial nint ComCppCreateHello();
 
+    [LibraryImport("ServerCpp.dll")]
+    public static partial nint ComCppCreateCalc();
+
     [LibraryImport("ole32.dll")]
     public static partial int CoCreateInstance(
         in Guid rclsid,

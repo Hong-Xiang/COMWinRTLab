@@ -204,7 +204,8 @@ struct __declspec(uuid("c30c6ecf-41d2-4628-982f-ecb48bddc4b8")) IAdder
 };
 struct __declspec(uuid("2f4f04ed-1b83-4569-926b-b632d9970321")) ICalc
     : com::IUnknown {
-  virtual IAdder *STDCALL GetAdder() = 0;
+  virtual com::hresult STDCALL Hello() = 0;
+  virtual com::hresult STDCALL GetAdder(IAdder **result) = 0;
 };
 
 struct Adder : IAdder {
@@ -212,6 +213,8 @@ struct Adder : IAdder {
 
   virtual com::hresult STDCALL
   QueryInterface(REFGUID riid, void **ppvObject) noexcept override {
+    std::cout << "Calc.QueryInterface called with riid " << guid_to_string(riid)
+              << std::endl;
     if (ppvObject == nullptr) {
       return com::hresult::POINTER;
     }
@@ -255,6 +258,8 @@ struct __declspec(uuid("45daa0f2-bdd0-4b33-9629-804ce225affb")) Calc : ICalc {
 
   virtual com::hresult STDCALL
   QueryInterface(REFGUID riid, void **ppvObject) noexcept override {
+    std::cout << "Calc.QueryInterface called with riid " << guid_to_string(riid)
+              << std::endl;
     if (ppvObject == nullptr) {
       return com::hresult::POINTER;
     }
@@ -285,9 +290,19 @@ struct __declspec(uuid("45daa0f2-bdd0-4b33-9629-804ce225affb")) Calc : ICalc {
     return newCount;
   }
 
-  virtual IAdder *STDCALL GetAdder() override {
-    auto result = new Adder();
-    return result;
+  virtual com::hresult STDCALL Hello() override {
+    std::cout << "Hello From Calc" << std::endl;
+    return com::hresult::OK;
+  }
+
+  virtual com::hresult STDCALL GetAdder(IAdder **result) override {
+    std::cout << "Calc.GetAdder called" << std::endl;
+    if (result == nullptr) {
+      return com::hresult::POINTER;
+    }
+    auto adder = new Adder();
+    *result = static_cast<IAdder *>(adder);
+    return com::hresult::OK;
   }
 };
 
@@ -349,4 +364,10 @@ EXTERN_C EXPORT_API com::hresult STDCALL DllGetClassObject(REFGUID rclsid,
     return comcppcalc::CalcFactory().QueryInterface(riid, ppv);
 
   return com::hresult::CLASS_E_CLASSNOTAVAILABLE;
+}
+
+EXTERN_C EXPORT_API comcppcalc::Calc *STDCALL ComCppCreateCalc() {
+  auto calc = new comcppcalc::Calc();
+  std::cout << "ComCppCreateCalc -> " << calc << std::endl;
+  return calc;
 }

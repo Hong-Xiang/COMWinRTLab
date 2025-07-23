@@ -13,5 +13,8 @@
   <comClass
     clsid="{56f52a44-2e07-4fce-be7a-6473e4ba0be8}"
     threadingModel="Both" />
+  <comClass
+    clsid="{45daa0f2-bdd0-4b33-9629-804ce225affb}"
+    threadingModel="Both" />
 </file>
 </assembly>
